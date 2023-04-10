@@ -15,7 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -33,39 +32,39 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _amount = 0;
 
-  _getAmountInfo()
-  {
-    num squared = pow(_amount, 1/2);
-    num triangular = pow(_amount, 1/3);
+  String _getAmountInfo() {
+    final num squared = pow(_amount, 1 / 2);
+    final num triangular = pow(_amount, 1 / 3);
 
-    if(squared.remainder(1) == 0 && triangular.remainder(1) == 0)
-    {
-      return "This number is both SQUARE and TRIANGULAR";
+    if (squared.remainder(1) == 0 && triangular.remainder(1) == 0) {
+      return 'This number is both SQUARE and TRIANGULAR';
     }
 
-    if(squared.remainder(1) == 0)
-    {
-      return "This number is SQUARE";
+    if (squared.remainder(1) == 0) {
+      return 'This number is SQUARE';
     }
 
-    if(triangular.remainder(1) == 0)
-    {
-      return "This number is TRIANGULAR";
+    if (triangular.remainder(1) == 0) {
+      return 'This number is TRIANGULAR';
     }
 
-    return "This number is neither SQUARE or TRIANGULAR";
+    return 'This number is neither SQUARE or TRIANGULAR';
   }
 
-  _showAlertDialog(BuildContext context) {
-
-    AlertDialog alert = AlertDialog(
+  void _showAlertDialog(BuildContext context) {
+    final AlertDialog alert = AlertDialog(
       title: Text(
         _amount.toString(),
-        style: const TextStyle(fontSize: 35,),
+        style: const TextStyle(
+          fontSize: 35,
+        ),
       ),
       content: Text(
         _getAmountInfo(),
-        style: const TextStyle(fontSize: 35,),),
+        style: const TextStyle(
+          fontSize: 35,
+        ),
+      ),
     );
 
     showDialog(
@@ -78,13 +77,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("Number Shapes")),
+        title: const Center(child: Text('Number Shapes')),
       ),
       body: Center(
-
         child: Padding(
           padding: const EdgeInsets.only(left: 18, top: 15),
           child: Column(
@@ -98,15 +95,17 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextField(
                 keyboardType: TextInputType.number,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly
+                ],
                 decoration: const InputDecoration(
-                    hintText: "number",
+                  hintText: 'number',
                 ),
                 style: const TextStyle(
                   fontSize: 30,
                 ),
-                onChanged: (value) {
-                  if(value.isNotEmpty) {
+                onChanged: (String value) {
+                  if (value.isNotEmpty) {
                     _amount = int.parse(value);
                   }
                 },
