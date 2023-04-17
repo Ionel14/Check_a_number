@@ -95,9 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               TextField(
                 keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.digitsOnly
-                ],
+                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                 decoration: const InputDecoration(
                   hintText: 'number',
                 ),
